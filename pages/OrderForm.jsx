@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import "./OrderForm.css";
 import "../images/iteration-1-images/logo.svg";
 import "../images/iteration-2-images/pictures/form-banner.png";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const MALZEMELER = [
   "Pepperoni",
   "Sosis",
@@ -28,6 +30,9 @@ export default function OrderForm() {
   const [errors, setErrors] = useState({});
   const secimFiyat = malzemeler.length * EXTRA_PRICE;
   const toplam = (BASE_PRICE + secimFiyat) * adet;
+  const [loading, setLoading] = useState(false);
+  const [apiError, setApiError] = useState("");
+  const navigate = useNavigate();
   const toggleMalzeme = (item) => {
     if (malzemeler.includes(item)) {
       setMalzemeler(malzemeler.filter((m) => m !== item));
@@ -48,10 +53,38 @@ export default function OrderForm() {
   setErrors(newErrors);
   setIsValid(Object.keys(newErrors).length === 0);
 }, [boyut, hamur, malzemeler]);
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isValid) return;
-    alert("Siparişiniz oluşturuldu! Teşekkürler.")};
+    setApiError("");
+    setLoading(true);
+      const payload = {
+        boyut,
+        hamur,
+        malzemeler,
+        not,
+        adet,
+        toplam: toplam.toFixed(2)
+      };
+      try {
+        const response = await axios.post(
+           "https://reqres.in/api/pizza",
+            payload,
+            { headers: { "x-api-key":"reqres_7cfca25ffb614a7683e0f905432ef9a1" } }
+        );
+          console.log("API Response:", response.data);
+          setBoyut("");
+          setHamur("");
+          setMalzemeler([]);
+          setNot("");
+          setAdet(1);
+          navigate("/success");
+      } catch (error) {
+        console.error("API Error:", error);
+        setApiError("Sipariş oluşturulurken bir hata oluştu. Lütfen tekrar deneyin.");
+      } finally {
+        setLoading(false);
+      }}
   return (
     <div className="order-container">
       <div className="üst-taraf">
@@ -151,13 +184,14 @@ export default function OrderForm() {
                   <span>{toplam.toFixed(2)}₺</span>
                 </div>
               </div>
+              {apiError && <p className="error-message">{apiError}</p>}
               <button
                 type="submit"
                 className="order-button"
-                disabled={!isValid}
+                disabled={!isValid || loading}
                 style={{ opacity: isValid ? 1 : 0.5 }}
                 >
-                Siparişi Oluştur</button>
+                {loading ? "Sipariş Oluşturuluyor..." : "Siparişi Oluştur"} </button>
             </div>
         </div>
       </form> 
