@@ -7,36 +7,36 @@
   --text-gray: #5F5F5F;
   --white: #FFFFFF;
 }
+
 body {
   font-family: 'Barlow', sans-serif;
   color: var(--text-dark);
   margin: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
   background-color: var(--white);
 }
+
 .üst-taraf {
- background-color: var(--bg-beige);
+background-color: var(--bg-beige);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
 .logo {
- background-color: var(--primary-red);
-    width: 100%;               /* Sayfayı tam kaplaması için */
-    min-height: 80px;          /* İstediğin yüksekliği verebilirsin */
-    
-    /* Ortalamayı sağlayan kısım */
-    display: flex;
-    justify-content: center;   /* Yatayda tam orta */
-    align-items: center;       /* Dikeyde tam orta */
-    
-    /* Yazı stilleri */
-    color: white;
-    font-family: sans-serif;   /* Kendi fontunu ekleyebilirsin */
+background-color: var(--primary-red);
+  width: 100%;
+  min-height: 80px;
+  display: flex;
+  justify-content: center;
 }
 
 .form-layout {
   background-color: var(--white);
 }
+
 .form-banner {
   width: 100%;
   background-color: var(--bg-beige);
@@ -46,9 +46,8 @@ body {
   padding: 20px 0;
 }
 
-/* Header & Logo Alanı */
 .order-header {
-  width: 100%;
+  width: 60%;
   color: var(--black);
   padding: 40px 20px;
 }
@@ -58,9 +57,9 @@ body {
 }
 
 .order-content {
-  width: 100%;
-  max-width: 600px; /* Tasarımdaki odak alanı */
+  width: 60%;
   padding: 40px 20px;
+  margin: 0 auto;
 }
 
 .order-content h2 {
@@ -81,9 +80,8 @@ body {
   font-weight: 700;
 }
 
-/* Form Tasarımı */
 .form-layout {
-  width: 100%;
+  width: 40%;
   display: flex;
   flex-direction: column;
 }
@@ -98,9 +96,8 @@ body {
   padding-bottom: 10px;
 }
 
-/* --- İterasyon 2: Özel Radio Butonlar (S, M, L) --- */
 .left-area .section:first-of-type label {
-  font-size: 0; /* Metni gizle */
+  font-size: 0;
   cursor: pointer;
 }
 
@@ -129,7 +126,6 @@ body {
 .left-area .section:first-of-type input[value="Orta"]::after { content: "M"; }
 .left-area .section:first-of-type input[value="Büyük"]::after { content: "L"; }
 
-/* --- İterasyon 2: Özel Checkbox Tasarımı --- */
 .checkbox-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -165,7 +161,6 @@ body {
   font-size: 14px;
 }
 
-/* İsim Inputu ve Textarea (Dökümandaki 3 karakter kuralı için) */
 input[type="text"], select, textarea {
   width: 100%;
   padding: 15px;
@@ -175,45 +170,45 @@ input[type="text"], select, textarea {
   font-family: inherit;
 }
 
-/* --- Alt Kısım (Özet Kartı ve Buton) --- */
 .bottom-section {
-    display: grid; /* Flex yerine Grid kullanımı daha net bir iki sütunlu yapı sağlar */
-    grid-template-columns: 1fr 1fr; /* İki eşit genişlikte sütun */
-    gap: 30px; /* Sütunlar arası boşluk */
-    align-items: start; /* Elemanları üstten hizala */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: center;
     border-top: 1px solid var(--border-light);
     padding-top: 30px;
     margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
 
-/* Sayaç (Sol taraf) */
 .counter {
-    grid-column: 1; /* Sadece ilk sütunda yer al */
+    grid-column: 1;
     display: flex;
-    /* border: 1px solid var(--border-light); Kaldırıldı, butonların kendi border'ı var gibi */
     border-radius: 5px;
-    overflow: hidden;
-    width: fit-content; /* İçeriği kadar genişlik */
-    height: 50px; /* Sabit yükseklik */
+    width: 140px;
+    height: 50px;
+    margin-left: 80px;
+    margin-top: 50px;
 }
 
 .counter button {
-    background-color: var(--primary-yellow); /* Sarı arka plan */
+    background-color: var(--primary-yellow);
     border: none;
-    width: 50px; /* Kare butonlar */
+    width: 50px;
     font-size: 1.4rem;
     font-weight: bold;
     cursor: pointer;
     transition: 0.2s;
-    padding: 0; /* Padding sıfırla, genişlik/yükseklik ile yönet */
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-dark); /* Yazı rengi */
+    color: var(--text-dark);
 }
 
 .counter button:hover {
-    background-color: #e0b10d; /* Hover rengi (biraz daha koyu sarı) */
+    background-color: #e0b10d;
 }
 
 .counter span {
@@ -224,18 +219,15 @@ input[type="text"], select, textarea {
     font-weight: 600;
     font-size: 1.2rem;
     background: var(--white);
-    border-left: 1px solid var(--border-light); /* Ara çizgiler */
+    border-left: 1px solid var(--border-light);
     border-right: 1px solid var(--border-light);
 }
 
-/* Özet Kartı (Sağ üst) */
 .summary-card {
-    grid-column: 2; /* İkinci sütunda yer al */
-    background-color: var(--bg-beige); /* Görseldeki gibi bej arka plan */
-    /* border: 1px solid var(--border-light); Görselde belirgin bir border yok, kaldırıldı */
+    grid-column: 2;
+    background-color: var(--bg-beige);
     padding: 25px;
     border-radius: 5px;
-    /* width: 250px; Kaldırıldı, grid sütununa yayılacak */
 }
 
 .summary-card h4 {
@@ -260,13 +252,12 @@ input[type="text"], select, textarea {
     font-weight: 700;
     font-size: 1.2rem;
     margin-top: 15px;
-    border-top: 1px solid var(--border-light); /* Çizgi rengi */
+    border-top: 1px solid var(--border-light);
     padding-top: 15px;
 }
 
-/* Sipariş Butonu (Sağ alt) */
 .order-button {
-    grid-column: 2; /* İkinci sütunda, özet kartının altında */
+    grid-column: 2;
     width: 100%;
     padding: 15px;
     background-color: var(--primary-yellow);
@@ -275,35 +266,45 @@ input[type="text"], select, textarea {
     font-size: 1.1rem;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 15px; /* Özet kartı ile arasındaki boşluk */
+    margin-top: 15px;
     color: var(--text-dark);
     transition: background-color 0.3s;
     font-family: inherit;
-}
+  }
 
 .order-button:hover:not(:disabled) {
     background-color: #e0b10d;
 }
+.section-not textarea {
+  height: 100px;
+  width: 700px;
+  text-align: center;
+  margin-left: 15px;
+}
+.section-hamur select {
+  width: 300px;
+  height: 50px;
+  padding: 0 15px;
+  margin-left: 10px;
+}
 
-/* --- Mobil Uyumluluk (Önemli) --- */
-/* Ekran daraldığında (örn. telefonda) düzenin bozulmaması için */
 @media (max-width: 768px) {
     .bottom-section {
-        grid-template-columns: 1fr; /* Tek sütuna düş */
+        grid-template-columns: 1fr;
         gap: 20px;
     }
     .counter, .summary-card, .order-button {
-        grid-column: 1; /* Hepsi tek sütunda alt alta */
-        width: 100%; /* Tam genişlik */
+        grid-column: 1;
+        width: 100%;
     }
     .counter {
-        justify-content: center; /* Sayacı ortala */
+        justify-content: center;
     }
     .summary-card {
-        order: 2; /* Özet kartı ortada */
+        order: 2;
     }
     .order-button {
-        order: 3; /* Buton en altta */
-        margin-top: 0; /* Grid gap zaten boşluk bırakacak */
+        order: 3;
+        margin-top: 0;
     }
 }

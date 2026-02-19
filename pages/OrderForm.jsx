@@ -1,9 +1,10 @@
-import React, {useState, useEffect} from "react";
+import {useState, useEffect} from "react";
 import "./OrderForm.css";
 import "../images/iteration-1-images/logo.svg";
 import "../images/iteration-2-images/pictures/form-banner.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 const MALZEMELER = [
   "Pepperoni",
   "Sosis",
@@ -20,6 +21,7 @@ const MALZEMELER = [
 "Kabak",];
 const BASE_PRICE = 85.5;
 const EXTRA_PRICE = 5;
+
 export default function OrderForm() {
   const [boyut, setBoyut] = useState("");
   const [hamur, setHamur] = useState("");
@@ -40,8 +42,9 @@ export default function OrderForm() {
       setMalzemeler([...malzemeler, item]);
     }
   };
+  
   useEffect(() => {
-    const newErrors = {};
+  const newErrors = {};
     if (!boyut) {
       newErrors.boyut = "Lütfen bir boyut seçin.";}
     if (!hamur) {
@@ -72,13 +75,12 @@ export default function OrderForm() {
             payload,
             { headers: { "x-api-key":"reqres_7cfca25ffb614a7683e0f905432ef9a1" } }
         );
-          console.log("API Response:", response.data);
           setBoyut("");
           setHamur("");
           setMalzemeler([]);
           setNot("");
           setAdet(1);
-          navigate("/success");
+          navigate("/success", { state: { siparis: payload } });
       } catch (error) {
         console.error("API Error:", error);
         setApiError("Sipariş oluşturulurken bir hata oluştu. Lütfen tekrar deneyin.");
@@ -131,7 +133,7 @@ export default function OrderForm() {
             ))}
             </div>
           {/* HAMUR SEÇİMİ */}
-          <div className="section">
+          <div className="section-hamur">
             <h4>Hamur Seç *</h4>
             <select value={hamur} onChange={(e) => setHamur(e.target.value)}>
               <option value="">Hamur Seçin</option>
@@ -158,7 +160,7 @@ export default function OrderForm() {
             </div>
           </div>
            {/* SİPARİŞ NOTU */}
-            <div className="section">
+            <div className="section-not">
               <h4>Sipariş Notu</h4>
               <textarea
                placeholder="Sipariş notunuzu buraya yazabilirsiniz..."

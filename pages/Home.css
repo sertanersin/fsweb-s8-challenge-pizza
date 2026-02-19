@@ -1,0 +1,57 @@
+.home-container {
+  background-image: url('/images/iteration-1-images/home-banner.png');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+.home-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.home-logo {
+  width: 300px;
+  margin-bottom: 50px;
+}
+
+.yellow-italic {
+  color: #FDC913;
+  font-family: 'Satisfy', cursive;
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.home-text h1 {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 300;
+  font-size: 80px;
+  letter-spacing: 2px;
+  line-height: 1.1;
+  margin-top: 0;
+}
+
+.home-button {
+  background-color: #FDC913;
+  border: none;
+  border-radius: 40px;
+  padding: 15px 50px;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 30px;
+  transition: transform 0.2s ease;
+}
+
+.home-button:hover {
+  transform: scale(1.05);
+  background-color: #e0b10d;
+}
